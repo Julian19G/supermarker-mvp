@@ -1,0 +1,17 @@
+C:\Users\usuario\Documents\4 Semestre\Lenguaje Informatico\Carpeta de trabajo C#\Supermarket-mvp\obj\Debug\net6.0-windows\Supermarket_mvp.Properties.Resources.resources
+C:\Users\usuario\Documents\4 Semestre\Lenguaje Informatico\Carpeta de trabajo C#\Supermarket-mvp\obj\Debug\net6.0-windows\Supermarket_mvp.Views.PayModeView.resources
+C:\Users\usuario\Documents\4 Semestre\Lenguaje Informatico\Carpeta de trabajo C#\Supermarket-mvp\obj\Debug\net6.0-windows\Supermarket-mvp.csproj.GenerateResource.cache
+C:\Users\usuario\Documents\4 Semestre\Lenguaje Informatico\Carpeta de trabajo C#\Supermarket-mvp\obj\Debug\net6.0-windows\Supermarket-mvp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\usuario\Documents\4 Semestre\Lenguaje Informatico\Carpeta de trabajo C#\Supermarket-mvp\obj\Debug\net6.0-windows\Supermarket-mvp.AssemblyInfoInputs.cache
+C:\Users\usuario\Documents\4 Semestre\Lenguaje Informatico\Carpeta de trabajo C#\Supermarket-mvp\obj\Debug\net6.0-windows\Supermarket-mvp.AssemblyInfo.cs
+C:\Users\usuario\Documents\4 Semestre\Lenguaje Informatico\Carpeta de trabajo C#\Supermarket-mvp\obj\Debug\net6.0-windows\Supermarket-mvp.csproj.CoreCompileInputs.cache
+C:\Users\usuario\Documents\4 Semestre\Lenguaje Informatico\Carpeta de trabajo C#\Supermarket-mvp\bin\Debug\net6.0-windows\Supermarket-mvp.exe
+C:\Users\usuario\Documents\4 Semestre\Lenguaje Informatico\Carpeta de trabajo C#\Supermarket-mvp\bin\Debug\net6.0-windows\Supermarket-mvp.deps.json
+C:\Users\usuario\Documents\4 Semestre\Lenguaje Informatico\Carpeta de trabajo C#\Supermarket-mvp\bin\Debug\net6.0-windows\Supermarket-mvp.runtimeconfig.json
+C:\Users\usuario\Documents\4 Semestre\Lenguaje Informatico\Carpeta de trabajo C#\Supermarket-mvp\bin\Debug\net6.0-windows\Supermarket-mvp.dll
+C:\Users\usuario\Documents\4 Semestre\Lenguaje Informatico\Carpeta de trabajo C#\Supermarket-mvp\bin\Debug\net6.0-windows\Supermarket-mvp.pdb
+C:\Users\usuario\Documents\4 Semestre\Lenguaje Informatico\Carpeta de trabajo C#\Supermarket-mvp\obj\Debug\net6.0-windows\Supermarket-mvp.dll
+C:\Users\usuario\Documents\4 Semestre\Lenguaje Informatico\Carpeta de trabajo C#\Supermarket-mvp\obj\Debug\net6.0-windows\refint\Supermarket-mvp.dll
+C:\Users\usuario\Documents\4 Semestre\Lenguaje Informatico\Carpeta de trabajo C#\Supermarket-mvp\obj\Debug\net6.0-windows\Supermarket-mvp.pdb
+C:\Users\usuario\Documents\4 Semestre\Lenguaje Informatico\Carpeta de trabajo C#\Supermarket-mvp\obj\Debug\net6.0-windows\Supermarket-mvp.genruntimeconfig.cache
+C:\Users\usuario\Documents\4 Semestre\Lenguaje Informatico\Carpeta de trabajo C#\Supermarket-mvp\obj\Debug\net6.0-windows\ref\Supermarket-mvp.dll
