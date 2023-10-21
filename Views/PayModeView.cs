@@ -28,7 +28,24 @@ namespace Supermarket_mvp.Views
 
             tabControl1.TabPages.Remove(tabPagePayModeDetail);
         }
+        private static PayModeView instance;
 
+        public static PayModeView GetInstance()
+        {
+            if (instance == null || instance.IsDisposed)
+            {
+                instance = new PayModeView();
+            }
+            else
+            {
+                if (instance.WindowState == FormWindowState.Minimized)
+                {
+                    instance.WindowState = FormWindowState.Normal;
+                }
+                instance.BringToFront();
+            }
+            return instance;
+        }
         private void AssociateAndRaiseViewEvents()
         {
             BtnSearch.Click += delegate { SearchEvent?.Invoke(this, EventArgs.Empty); };
@@ -84,7 +101,7 @@ namespace Supermarket_mvp.Views
 
         }
 
-       
+
         public event EventHandler SearchEvent;
         public event EventHandler AddNewEvent;
         public event EventHandler EditEvent;
