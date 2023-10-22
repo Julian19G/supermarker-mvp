@@ -18,23 +18,26 @@ namespace Supermarket_mvp.Presenters
         public PayModePresenter(IPayModeView view, IPayModeRepository repository)
         {
             this.payModeBindingSource = new BindingSource();
+
             this.view = view;
             this.repository = repository;
+   
 
             this.view.SearchEvent += SearchPayMode;
             this.view.AddNewEvent += AddNewPayMode;
             this.view.EditEvent += LoadSelectPayModeToEdit;
-            this.view.DeleteEvent += DeleteSelectPayMode;
+            this.view.DeleteEvent += DeleteSelectedPayMode;
             this.view.SaveEvent += SavePayMode;
             this.view.CancelEvent += CancelAction;
 
             this.view.SetPayModeListBildSource(payModeBindingSource);
 
-            loadAllPayModeList();
+            loadAllOpenPayModeList();
+
             this.view.Show();
         }
 
-        private void loadAllPayModeList()
+        private void loadAllOpenPayModeList()
         {
             payModeList = repository.GetAll();
             payModeBindingSource.DataSource = payModeList;
@@ -42,79 +45,27 @@ namespace Supermarket_mvp.Presenters
 
         private void CancelAction(object? sender, EventArgs e)
         {
-            CleanViewFields();
+            throw new NotImplementedException();
         }
 
         private void SavePayMode(object? sender, EventArgs e)
         {
-            var payMode = new PayModeModel();
-
-            payMode.Id = Convert.ToInt32(view.PayModeId); 
-            payMode.Name = view.PayModeName;
-            payMode.Observation = view.PayModeObservation;
-
-            try
-            {
-                new Common.ModelDataValidation().Validate(payMode);
-                if(view.IsEdit)
-                {
-                    repository.Edit(payMode);
-                    view.Message = "PayMode Edit successfull";
-                }
-                else
-                {
-                    repository.Add(payMode);
-                    view.Message = "PayMode added succesfuly";
-                }
-                view.IsSuccesfull = true;
-                loadAllPayModeList();
-                CleanViewFields();
-            }
-            catch (Exception ex)
-            {
-                view.IsSuccesfull = false;
-                view.Message =  "";
-            }
+            throw new NotImplementedException();
         }
 
-        private void CleanViewFields()
+        private void DeleteSelectedPayMode(object? sender, EventArgs e)
         {
-            view.PayModeId = "0";
-            view.PayModeName = "";
-            view.PayModeObservation = "";
-        }
-
-        private void DeleteSelectPayMode(object? sender, EventArgs e)
-        {
-          try
-            {
-                var payMode = (PayModeModel)payModeBindingSource.Current;
-                repository.Delete(payMode.Id);
-                view.IsSuccesfull = true;
-                view.Message = "Pay Mode Deleted Successfully";
-                loadAllPayModeList();
-            }
-            catch (Exception ex)
-            {
-                view.IsSuccesfull = false;
-                view.Message = "An error ocurred, could not delete pay mode";
-            }
+            throw new NotImplementedException();
         }
 
         private void LoadSelectPayModeToEdit(object? sender, EventArgs e)
         {
-            var payMode = (PayModeModel)payModeBindingSource.Current;
-
-            view.PayModeId = payMode.Id.ToString();
-            view.PayModeName = payMode.Name;
-            view.PayModeName = payMode.Observation;
-
-            view.IsEdit = true;
+            throw new NotImplementedException();
         }
 
         private void AddNewPayMode(object? sender, EventArgs e)
         {
-            view.IsEdit = false;
+            throw new NotImplementedException();
         }
 
         private void SearchPayMode(object? sender, EventArgs e)
@@ -124,7 +75,8 @@ namespace Supermarket_mvp.Presenters
             {
                 payModeList = repository.GetByValue(this.view.SearchValue);
             }
-            else {
+            else
+            {
                 payModeList = repository.GetAll();
             }
             payModeBindingSource.DataSource = payModeList;

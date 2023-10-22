@@ -14,10 +14,26 @@ namespace Supermarket_mvp.Views
     {
         private bool isEdit;
         private bool isSuccesfull;
+        private string message;
 
         public ProductsView()
         {
             InitializeComponent();
+            AssociateAndRaiseViewEvents();
+
+            tabControlProducts.TabPages.Remove(tabPageProductDetail);
+        }
+
+        private void AssociateAndRaiseViewEvents()
+        {
+            BtnSearchProducts.Click += delegate { SearchEvent?.Invoke(this, EventArgs.Empty); };
+            TxtSearchProducts.KeyDown += (s, e) =>
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    SearchEvent?.Invoke(this, EventArgs.Empty);
+                }
+            };
         }
 
         public string ProductsId

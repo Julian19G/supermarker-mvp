@@ -76,35 +76,6 @@ namespace Supermarket_mvp.Views
             };
         }
 
-        public void SetPayModeListBildSource(BindingSource payModeList)
-        {
-            DgPayMode.DataSource = payModeList;
-            AssociateAndRaiseViewEvents();
-
-            tabControl1.TabPages.Remove(tabPagePayModeDetail);
-        }
-        private static PayModeView instance;
-
-        public static PayModeView GetInstance(Form parentContainer)
-        {
-            if (instance == null || instance.IsDisposed)
-            {
-                instance = new PayModeView();
-                instance.MdiParent = parentContainer;
-
-                instance.FormBorderStyle = FormBorderStyle.None;
-                instance.Dock = DockStyle.Fill;
-            }
-            else
-            {
-                if (instance.WindowState == FormWindowState.Minimized)
-                {
-                    instance.WindowState = FormWindowState.Normal;
-                }
-                instance.BringToFront();
-            }
-            return instance;
-        }
         private void AssociateAndRaiseViewEvents()
         {
             BtnSearch.Click += delegate { SearchEvent?.Invoke(this, EventArgs.Empty); };
@@ -115,8 +86,16 @@ namespace Supermarket_mvp.Views
                     SearchEvent?.Invoke(this, EventArgs.Empty);
                 }
             };
-            BtnNew.Click += delegate { AddNewEvent?.Invoke(this, EventArgs.Empty); };
         }
+
+        public void SetPayModeListBildSource(BindingSource payModeList)
+        {
+            DgPayMode.DataSource = payModeList;
+            AssociateAndRaiseViewEvents();
+
+            tabControl1.TabPages.Remove(tabPagePayModeDetail);
+        }
+        private static PayModeView instance;
 
         public string PayModeId
         {
@@ -153,6 +132,29 @@ namespace Supermarket_mvp.Views
             get { return message; }
             set { message = value; }
         }
+
+        public static PayModeView GetInstance(Form parentContainer)
+        {
+            if (instance == null || instance.IsDisposed)
+            {
+                instance = new PayModeView();
+                instance.MdiParent = parentContainer;
+
+                instance.FormBorderStyle = FormBorderStyle.None;
+                instance.Dock = DockStyle.Fill;
+            }
+            else
+            {
+                if (instance.WindowState == FormWindowState.Minimized)
+                {
+                    instance.WindowState = FormWindowState.Normal;
+                }
+                instance.BringToFront();
+            }
+            return instance;
+        }
+
+
 
         private void label1_Click(object sender, EventArgs e)
         {
