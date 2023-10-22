@@ -8,5 +8,25 @@ namespace Supermarket_mvp.Views
 {
     internal interface IProductsView
     {
+        string ProductsId { get; set; }
+        string ProductsName { get; set; }
+        string ProductsStock { get; set; }
+        string ProductsCategory { get; set; }
+        string ProductsObservation { get; set; }
+        string SearchValue { get; set; }
+        bool IsEdit { get; set; }
+        bool IsSuccesfull { get; set; }
+        string Message { get; set; }
+
+
+        event EventHandler SearchEvent;
+        event EventHandler AddNewEvent;
+        event EventHandler EditEvent;
+        event EventHandler DeleteEvent;
+        event EventHandler SaveEvent;
+        event EventHandler CancelEvent;
+
+        void SetProductsListBildSource(BindingSource productsList);
+        void Show();
     }
 }

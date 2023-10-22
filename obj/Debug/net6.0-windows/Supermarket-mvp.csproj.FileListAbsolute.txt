@@ -43,3 +43,6 @@ C:\Users\usuario\Documents\4 Semestre\Lenguaje Informatico\Carpeta de trabajo C#
 C:\Users\usuario\Documents\4 Semestre\Lenguaje Informatico\Carpeta de trabajo C#\Supermarket-mvp\obj\Debug\net6.0-windows\Supermarket-mvp.csproj.AssemblyReference.cache
 C:\Users\usuario\Documents\4 Semestre\Lenguaje Informatico\Carpeta de trabajo C#\Supermarket-mvp\obj\Debug\net6.0-windows\Supermarket-mvp.csproj.CopyComplete
 C:\Users\usuario\Documents\4 Semestre\Lenguaje Informatico\Carpeta de trabajo C#\Supermarket-mvp\obj\Debug\net6.0-windows\Supermarket_mvp.Views.MainView.resources
+C:\Users\usuario\Documents\4 Semestre\Lenguaje Informatico\Carpeta de trabajo C#\Supermarket-mvp\obj\Debug\net6.0-windows\Supermarket_mvp.Views.CategoriesView.resources
+C:\Users\usuario\Documents\4 Semestre\Lenguaje Informatico\Carpeta de trabajo C#\Supermarket-mvp\obj\Debug\net6.0-windows\Supermarket_mvp.Views.ProductsView.resources
+C:\Users\usuario\Documents\4 Semestre\Lenguaje Informatico\Carpeta de trabajo C#\Supermarket-mvp\obj\Debug\net6.0-windows\Supermarket_mvp.Views.ProvidersView.resources
