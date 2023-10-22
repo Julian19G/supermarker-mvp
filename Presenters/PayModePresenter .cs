@@ -73,7 +73,7 @@ namespace Supermarket_mvp.Presenters
             catch (Exception ex)
             {
                 view.IsSuccesfull = false;
-                view.Message = ex.Message;
+                view.Message =  "";
             }
         }
 

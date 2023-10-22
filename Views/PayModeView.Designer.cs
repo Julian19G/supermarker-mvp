@@ -317,7 +317,7 @@
             Controls.Add(tabControl1);
             Controls.Add(panel1);
             Name = "PayModeView";
-            Text = "Pay Mode Management";
+            Text = " ";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
