@@ -22,6 +22,8 @@ namespace Supermarket_mvp.Views
             AssociateAndRaiseViewEvents();
 
             tabControlProducts.TabPages.Remove(tabPageProductDetail);
+
+            BtnCloseProducts.Click += delegate { this.Close(); };
         }
 
         private void AssociateAndRaiseViewEvents()
@@ -34,6 +36,12 @@ namespace Supermarket_mvp.Views
                     SearchEvent?.Invoke(this, EventArgs.Empty);
                 }
             };
+            BtnNewProducts.Click += delegate { AddNewEvent?.Invoke(this, EventArgs.Empty); };
+            BtnEditProducts.Click += delegate { EditEvent?.Invoke(this, EventArgs.Empty); };
+            BtnDeleteProducts.Click += delegate { DeleteEvent?.Invoke(this, EventArgs.Empty); };
+            BtnSaveProducts.Click += delegate { SaveEvent?.Invoke(this, EventArgs.Empty); };
+            BtnCancelProducts.Click += delegate { CancelEvent?.Invoke(this, EventArgs.Empty); };
+ 
         }
 
         public string ProductsId
@@ -87,6 +95,31 @@ namespace Supermarket_mvp.Views
         public void SetProductsListBildSource(BindingSource productsList)
         {
             throw new NotImplementedException();
+        }
+        private static ProductsView instance;
+
+        public static ProductsView GetInstance(Form parentContainer)
+        {
+            if (instance == null || instance.IsDisposed)
+            {
+                instance = new ProductsView();
+                instance.MdiParent = parentContainer;
+
+                instance.FormBorderStyle = FormBorderStyle.None;
+                instance.Dock = DockStyle.Fill;
+
+                instance.FormBorderStyle = FormBorderStyle.None;
+                instance.Dock = DockStyle.Fill;
+            }
+            else
+            {
+                if (instance.WindowState == FormWindowState.Minimized)
+                {
+                    instance.WindowState = FormWindowState.Normal;
+                }
+                instance.BringToFront();
+            }
+            return instance;
         }
     }
 }

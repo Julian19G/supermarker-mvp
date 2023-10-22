@@ -21,6 +21,12 @@ namespace Supermarket_mvp.Views
             InitializeComponent();
             AssociateAndRaiseViewEvents();
             tabControlCategories.TabPages.Remove(tabPageCategoriesDetail);
+
+            BtnSalirCategories.Click += delegate { this.Close(); };
+            BtnEditCategories.Click += delegate { EditEvent?.Invoke(this, EventArgs.Empty); };
+            BtnDeleteCategories.Click += delegate { DeleteEvent?.Invoke(this, EventArgs.Empty); };
+            BtnSaveCategories.Click += delegate { SaveEvent?.Invoke(this, EventArgs.Empty); };
+            BtnCancelCategories.Click += delegate { CancelEvent?.Invoke(this, EventArgs.Empty); };
         }
 
         private void AssociateAndRaiseViewEvents()
@@ -33,12 +39,15 @@ namespace Supermarket_mvp.Views
                     SearchEvent?.Invoke(this, EventArgs.Empty);
                 }
             };
+
+            BtnNewCategories.Click += delegate { AddNewEvent?.Invoke(this, EventArgs.Empty); };
         }
 
-        public string CategoriesId {
-           get { return TxtIdCategories.Text; }
-           set { TxtIdCategories.Text = value;}
-                
+        public string CategoriesId
+        {
+            get { return TxtIdCategories.Text; }
+            set { TxtIdCategories.Text = value; }
+
         }
         public string CategoriesName
         {
@@ -81,6 +90,29 @@ namespace Supermarket_mvp.Views
         public void SetCategoriesListBildSource(BindingSource categoriesList)
         {
             DgCategories.DataSource = categoriesList;
+        }
+
+        private static CategoriesView instance;
+
+        public static CategoriesView GetInstance(Form parentContainer)
+        {
+            if (instance == null || instance.IsDisposed)
+            {
+                instance = new CategoriesView();
+                instance.MdiParent = parentContainer;
+
+                instance.FormBorderStyle = FormBorderStyle.None;
+                instance.Dock = DockStyle.Fill;
+            }
+            else
+            {
+                if (instance.WindowState == FormWindowState.Minimized)
+                {
+                    instance.WindowState = FormWindowState.Normal;
+                }
+                instance.BringToFront();
+            }
+            return instance;
         }
     }
 }
