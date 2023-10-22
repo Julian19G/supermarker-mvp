@@ -20,5 +20,10 @@ namespace Supermarket_mvp.Models
         [Required(ErrorMessage = "Observation is requerided")]
         [StringLength(200, MinimumLength = 3, ErrorMessage = "Observation must be between 3 and 50 characters")]
         public String ObservationProvider { get; set; }
+
+        internal void Add(ProvidersModel providersModel)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

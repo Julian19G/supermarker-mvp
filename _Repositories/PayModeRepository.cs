@@ -76,11 +76,11 @@ namespace Supermarket_mvp._Repositories
                 {
                     while (reader.Read())
                     {
-                        var PayModeModel = new PayModeModel();
-                        PayModeModel.Id = (int)reader["Pay_Mode_Id"];
-                        PayModeModel.Name = reader["Pay_Mode_Name"].ToString();
-                        PayModeModel.Observation = reader["Pay_Mode_Observation"].ToString();
-                        payModeList.Add(PayModeModel);
+                        var payModeModel = new PayModeModel();
+                        payModeModel.Id = (int)reader["Pay_Mode_Id"];
+                        payModeModel.Name = reader["Pay_Mode_Name"].ToString();
+                        payModeModel.Observation = reader["Pay_Mode_Observation"].ToString();
+                        payModeList.Add(payModeModel);
                     }
                 }
             }
@@ -106,11 +106,11 @@ namespace Supermarket_mvp._Repositories
                 {
                     while (reader.Read())
                     {
-                        var PayModeModel = new PayModeModel();
-                        PayModeModel.Id = (int)reader["Pay_Mode_Id"];
-                        PayModeModel.Name = reader["Pay_Mode_Name"].ToString();
-                        PayModeModel.Observation = reader["Pay_Mode_Observation"].ToString();
-                        payModeList.Add(PayModeModel);
+                        var payModeModel = new PayModeModel();
+                        payModeModel.Id = (int)reader["Pay_Mode_Id"];
+                        payModeModel.Name = reader["Pay_Mode_Name"].ToString();
+                        payModeModel.Observation = reader["Pay_Mode_Observation"].ToString();
+                        payModeList.Add(payModeModel);
                     }
                 }
             }

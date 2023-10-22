@@ -22,5 +22,10 @@ namespace Supermarket_mvp.Models
         public int StockProducto { get; set; }
         [DisplayName("CATEGORIA  ID")]
         public int CategoryProducto { get; set; }
+
+        internal void Add(ProductsModel productsModel)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

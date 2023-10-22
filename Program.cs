@@ -17,7 +17,8 @@ namespace Supermarket_mvp
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            string sqlConnectionString = Settings.Default.SqlConnection;
+            string sqlConnectionString = "";
+            IPayModeRepository repository = new PayModeRepository(sqlConnectionString);
             IMainView view = new MainView();
             new MainPresenter(view, sqlConnectionString);
             Application.Run((Form) view);

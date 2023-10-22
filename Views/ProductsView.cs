@@ -49,7 +49,8 @@ namespace Supermarket_mvp.Views
         public string ProductsStock
         {
             get { return TxtStockProducts.Text; }
-            set { TxtStockProducts.Text = value; }; }
+            set { TxtStockProducts.Text = value; }
+        }
         public string ProductsCategory
         {
             get { return CbCategoriesProducts.Text; }
