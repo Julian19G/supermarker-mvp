@@ -85,9 +85,10 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(209, 48);
+            label1.Font = new Font("Showcard Gothic", 48F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(186, 24);
             label1.Name = "label1";
-            label1.Size = new Size(66, 20);
+            label1.Size = new Size(462, 98);
             label1.TabIndex = 0;
             label1.Text = "Products";
             // 

@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainView));
             panel1 = new Panel();
+            BtnProducts = new Button();
+            BtnProviders = new Button();
+            BtnCategories = new Button();
             BtnExit = new Button();
             BtnPayMode = new Button();
             pictureBox1 = new PictureBox();
-            BtnCategories = new Button();
-            BtnProviders = new Button();
-            BtnProducts = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -53,9 +54,39 @@
             panel1.Size = new Size(250, 450);
             panel1.TabIndex = 0;
             // 
+            // BtnProducts
+            // 
+            BtnProducts.BackgroundImage = Properties.Resources.products;
+            BtnProducts.BackgroundImageLayout = ImageLayout.Zoom;
+            BtnProducts.Location = new Point(0, 306);
+            BtnProducts.Name = "BtnProducts";
+            BtnProducts.Size = new Size(250, 82);
+            BtnProducts.TabIndex = 5;
+            BtnProducts.UseVisualStyleBackColor = true;
+            // 
+            // BtnProviders
+            // 
+            BtnProviders.BackgroundImage = Properties.Resources.providers;
+            BtnProviders.BackgroundImageLayout = ImageLayout.Zoom;
+            BtnProviders.Location = new Point(0, 234);
+            BtnProviders.Name = "BtnProviders";
+            BtnProviders.Size = new Size(250, 74);
+            BtnProviders.TabIndex = 4;
+            BtnProviders.UseVisualStyleBackColor = true;
+            // 
+            // BtnCategories
+            // 
+            BtnCategories.BackgroundImage = (Image)resources.GetObject("BtnCategories.BackgroundImage");
+            BtnCategories.BackgroundImageLayout = ImageLayout.Zoom;
+            BtnCategories.Location = new Point(0, 150);
+            BtnCategories.Name = "BtnCategories";
+            BtnCategories.Size = new Size(250, 85);
+            BtnCategories.TabIndex = 3;
+            BtnCategories.UseVisualStyleBackColor = true;
+            // 
             // BtnExit
             // 
-            BtnExit.BackgroundImage = Properties.Resources.cerrar1;
+            BtnExit.BackgroundImage = (Image)resources.GetObject("BtnExit.BackgroundImage");
             BtnExit.BackgroundImageLayout = ImageLayout.Zoom;
             BtnExit.Dock = DockStyle.Bottom;
             BtnExit.Location = new Point(0, 384);
@@ -83,34 +114,6 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
-            // 
-            // BtnCategories
-            // 
-            BtnCategories.Location = new Point(0, 150);
-            BtnCategories.Name = "BtnCategories";
-            BtnCategories.Size = new Size(250, 85);
-            BtnCategories.TabIndex = 3;
-            BtnCategories.UseVisualStyleBackColor = true;
-            // 
-            // BtnProviders
-            // 
-            BtnProviders.BackgroundImage = Properties.Resources.providers;
-            BtnProviders.BackgroundImageLayout = ImageLayout.Zoom;
-            BtnProviders.Location = new Point(0, 234);
-            BtnProviders.Name = "BtnProviders";
-            BtnProviders.Size = new Size(250, 74);
-            BtnProviders.TabIndex = 4;
-            BtnProviders.UseVisualStyleBackColor = true;
-            // 
-            // BtnProducts
-            // 
-            BtnProducts.BackgroundImage = Properties.Resources.products;
-            BtnProducts.BackgroundImageLayout = ImageLayout.Zoom;
-            BtnProducts.Location = new Point(0, 306);
-            BtnProducts.Name = "BtnProducts";
-            BtnProducts.Size = new Size(250, 82);
-            BtnProducts.TabIndex = 5;
-            BtnProducts.UseVisualStyleBackColor = true;
             // 
             // MainView
             // 

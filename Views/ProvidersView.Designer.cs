@@ -81,9 +81,10 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(176, 52);
+            label1.Font = new Font("Showcard Gothic", 48F, FontStyle.Italic, GraphicsUnit.Point);
+            label1.Location = new Point(173, 9);
             label1.Name = "label1";
-            label1.Size = new Size(70, 20);
+            label1.Size = new Size(483, 98);
             label1.TabIndex = 0;
             label1.Text = "Providers";
             // 

@@ -82,9 +82,10 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(215, 37);
+            label1.Font = new Font("Showcard Gothic", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(235, 34);
             label1.Name = "label1";
-            label1.Size = new Size(74, 20);
+            label1.Size = new Size(199, 43);
             label1.TabIndex = 0;
             label1.Text = "Pay Mode";
             label1.Click += label1_Click;

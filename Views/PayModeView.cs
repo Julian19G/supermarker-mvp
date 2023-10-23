@@ -24,7 +24,8 @@ namespace Supermarket_mvp.Views
             tabControl1.TabPages.Remove(tabPagePayModeDetail);
             BtnClose.Click += delegate { this.Close(); };
 
-            BtnNew.Click += delegate { 
+            BtnNew.Click += delegate
+            {
 
                 AddNewEvent?.Invoke(this, EventArgs.Empty);
                 tabControl1.TabPages.Remove(tabPagePayModeLis);
@@ -33,7 +34,8 @@ namespace Supermarket_mvp.Views
 
             };
 
-            BtnEdit.Click += delegate { 
+            BtnEdit.Click += delegate
+            {
                 EditEvent?.Invoke(this, EventArgs.Empty);
 
                 tabControl1.TabPages.Remove(tabPagePayModeLis);
@@ -41,7 +43,8 @@ namespace Supermarket_mvp.Views
                 tabPagePayModeDetail.Text = "Edit Pay Mode";
             };
 
-            BtnDelete.Click += delegate { 
+            BtnDelete.Click += delegate
+            {
                 var result = MessageBox.Show(
                 "Are you sure you want  to delete the selected Pay Mode",
                 "WARNING",
@@ -53,7 +56,8 @@ namespace Supermarket_mvp.Views
                 }
             };
 
-            BtnSave.Click += delegate {
+            BtnSave.Click += delegate
+            {
                 SaveEvent?.Invoke(this, EventArgs.Empty);
                 if (isSuccesfull)
                 {
@@ -63,7 +67,8 @@ namespace Supermarket_mvp.Views
                 MessageBox.Show(Message);
             };
 
-            BtnCancel.Click += delegate { 
+            BtnCancel.Click += delegate
+            {
                 CancelEvent?.Invoke(this, EventArgs.Empty);
 
                 tabControl1.TabPages.Remove(tabPagePayModeDetail);
