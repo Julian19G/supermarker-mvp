@@ -21,7 +21,7 @@ namespace Supermarket_mvp.Models
         [DisplayName("STOCK  PRODUCTO")]
         public int StockProducto { get; set; }
         [DisplayName("CATEGORIA  ID")]
-        public int CategoryProducto { get; set; }
+        public string CategoryProducto { get; set; }
 
         internal void Add(ProductsModel productsModel)
         {

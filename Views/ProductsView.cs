@@ -24,10 +24,61 @@ namespace Supermarket_mvp.Views
             tabControlProducts.TabPages.Remove(tabPageProductDetail);
 
             BtnCloseProducts.Click += delegate { this.Close(); };
+
+            BtnNewProducts.Click += delegate
+            {
+                AddNewEvent?.Invoke(this, EventArgs.Empty);
+
+                tabControlProducts.TabPages.Remove(tabPageProductList);
+                tabControlProducts.TabPages.Add(tabPageProductDetail);
+                tabPageProductDetail.Text = "Add New Product";
+            };
+
+            BtnEditProducts.Click += delegate
+            {
+                EditEvent?.Invoke(this, EventArgs.Empty);
+                tabControlProducts.TabPages.Remove(tabPageProductList);
+                tabControlProducts.TabPages.Add(tabPageProductDetail);
+                tabPageProductDetail.Text = "Edit Product";
+
+            };
+
+            BtnDeleteProducts.Click += delegate
+            {
+                var result = MessageBox.Show(
+                "Are you sure you want  to delete the selected Providers",
+                "WARNING",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+                    DeleteEvent?.Invoke(this, EventArgs.Empty);
+                    MessageBox.Show(Message);
+                }
+            };
+
+            BtnSaveProducts.Click += delegate
+            {
+                SaveEvent?.Invoke(this, EventArgs.Empty);
+                if (isSuccesfull)
+                {
+                    tabControlProducts.TabPages.Remove(tabPageProductDetail);
+                    tabControlProducts.TabPages.Add(tabPageProductList);
+                }
+                MessageBox.Show(Message);
+
+            };
+            BtnCancelProducts.Click += delegate
+            {
+                CancelEvent?.Invoke(this, EventArgs.Empty);
+                tabControlProducts.TabPages.Remove(tabPageProductDetail);
+                tabControlProducts.TabPages.Add(tabPageProductList);
+            };
+
         }
 
         private void AssociateAndRaiseViewEvents()
         {
+            CbCategoriesProducts.Click += delegate { SearchCategoriesEvent?.Invoke(this, EventArgs.Empty); };
             BtnSearchProducts.Click += delegate { SearchEvent?.Invoke(this, EventArgs.Empty); };
             TxtSearchProducts.KeyDown += (s, e) =>
             {
@@ -36,12 +87,6 @@ namespace Supermarket_mvp.Views
                     SearchEvent?.Invoke(this, EventArgs.Empty);
                 }
             };
-            BtnNewProducts.Click += delegate { AddNewEvent?.Invoke(this, EventArgs.Empty); };
-            BtnEditProducts.Click += delegate { EditEvent?.Invoke(this, EventArgs.Empty); };
-            BtnDeleteProducts.Click += delegate { DeleteEvent?.Invoke(this, EventArgs.Empty); };
-            BtnSaveProducts.Click += delegate { SaveEvent?.Invoke(this, EventArgs.Empty); };
-            BtnCancelProducts.Click += delegate { CancelEvent?.Invoke(this, EventArgs.Empty); };
- 
         }
 
         public string ProductsId
@@ -64,6 +109,11 @@ namespace Supermarket_mvp.Views
             get { return CbCategoriesProducts.Text; }
             set { CbCategoriesProducts.Text = value; }
         }
+        public string ProductsPrice
+        {
+            get { return TxtPriceProducts.Text; }
+            set { TxtPriceProducts.Text = value; }
+        }
         public string SearchValue
         {
             get { return TxtSearchProducts.Text; }
@@ -85,7 +135,10 @@ namespace Supermarket_mvp.Views
             set { message = value; }
         }
 
+
+
         public event EventHandler SearchEvent;
+        public event EventHandler SearchCategoriesEvent;
         public event EventHandler AddNewEvent;
         public event EventHandler EditEvent;
         public event EventHandler DeleteEvent;
@@ -94,7 +147,17 @@ namespace Supermarket_mvp.Views
 
         public void SetProductsListBildSource(BindingSource productsList)
         {
-            throw new NotImplementedException();
+            DgProducts.DataSource = productsList;
+            AssociateAndRaiseViewEvents();
+
+            tabControlProducts.TabPages.Remove(tabPageProductDetail);
+        }
+        public void SetCategoriesListBildSource(BindingSource categoriesList)
+        {
+            CbCategoriesProducts.DataSource = categoriesList;
+            CbCategoriesProducts.DisplayMember = "NameCategoria";
+            AssociateAndRaiseViewEvents();
+
         }
         private static ProductsView instance;
 
@@ -121,5 +184,6 @@ namespace Supermarket_mvp.Views
             }
             return instance;
         }
+
     }
 }

@@ -12,6 +12,7 @@ namespace Supermarket_mvp.Views
         string ProductsName { get; set; }
         string ProductsStock { get; set; }
         string ProductsCategory { get; set; }
+        string ProductsPrice { get; set; }
         string SearchValue { get; set; }
         bool IsEdit { get; set; }
         bool IsSuccesfull { get; set; }
@@ -19,6 +20,7 @@ namespace Supermarket_mvp.Views
 
 
         event EventHandler SearchEvent;
+        event EventHandler SearchCategoriesEvent;
         event EventHandler AddNewEvent;
         event EventHandler EditEvent;
         event EventHandler DeleteEvent;
@@ -26,6 +28,7 @@ namespace Supermarket_mvp.Views
         event EventHandler CancelEvent;
 
         void SetProductsListBildSource(BindingSource productsList);
+        void SetCategoriesListBildSource(BindingSource categoriesList);
         void Show();
     }
 }

@@ -23,10 +23,52 @@ namespace Supermarket_mvp.Views
             tabControlCategories.TabPages.Remove(tabPageCategoriesDetail);
 
             BtnSalirCategories.Click += delegate { this.Close(); };
-            BtnEditCategories.Click += delegate { EditEvent?.Invoke(this, EventArgs.Empty); };
-            BtnDeleteCategories.Click += delegate { DeleteEvent?.Invoke(this, EventArgs.Empty); };
-            BtnSaveCategories.Click += delegate { SaveEvent?.Invoke(this, EventArgs.Empty); };
-            BtnCancelCategories.Click += delegate { CancelEvent?.Invoke(this, EventArgs.Empty); };
+            BtnNewCategories.Click += delegate
+            {
+                AddNewEvent?.Invoke(this, EventArgs.Empty);
+
+                tabControlCategories.TabPages.Remove(tabPageCategoriesList);
+                tabControlCategories.TabPages.Add(tabPageCategoriesDetail);
+                tabPageCategoriesDetail.Text = "Add New Categories";
+            };
+
+            BtnEditCategories.Click += delegate
+            {
+                EditEvent?.Invoke(this, EventArgs.Empty);
+
+                tabControlCategories.TabPages.Remove(tabPageCategoriesList);
+                tabControlCategories.TabPages.Add(tabPageCategoriesDetail);
+                tabPageCategoriesDetail.Text = "Edit Categories";
+            };
+            BtnDeleteCategories.Click += delegate
+            {
+                var result = MessageBox.Show(
+                "Are you sure you want  to delete the selected Providers",
+                "WARNING",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+                    DeleteEvent?.Invoke(this, EventArgs.Empty);
+                    MessageBox.Show(Message);
+                }
+            };
+            BtnSaveCategories.Click += delegate
+            {
+                SaveEvent?.Invoke(this, EventArgs.Empty);
+                if (isSuccesfull)
+                {
+                    tabControlCategories.TabPages.Remove(tabPageCategoriesDetail);
+                    tabControlCategories.TabPages.Add(tabPageCategoriesList);
+                }
+                MessageBox.Show(Message);
+            };
+            BtnCancelCategories.Click += delegate
+            {
+                CancelEvent?.Invoke(this, EventArgs.Empty);
+
+                tabControlCategories.TabPages.Remove(tabPageCategoriesDetail);
+                tabControlCategories.TabPages.Add(tabPageCategoriesList);
+            };
         }
 
         private void AssociateAndRaiseViewEvents()
@@ -90,6 +132,10 @@ namespace Supermarket_mvp.Views
         public void SetCategoriesListBildSource(BindingSource categoriesList)
         {
             DgCategories.DataSource = categoriesList;
+
+            AssociateAndRaiseViewEvents();
+
+            tabControlCategories.TabPages.Remove(tabPageCategoriesDetail);
         }
 
         private static CategoriesView instance;

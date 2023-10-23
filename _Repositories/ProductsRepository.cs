@@ -17,17 +17,49 @@ namespace Supermarket_mvp._Repositories
         }
         public void Add(ProductsModel productsModel)
         {
-            throw new NotImplementedException();
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "INSERT INTO Products VALUES (@name, @price, @stock, @category)";
+                command.Parameters.Add("@name", SqlDbType.NVarChar).Value = productsModel.NameProducto;
+                command.Parameters.Add("@price", SqlDbType.Int).Value = productsModel.PriceProducto;
+                command.Parameters.Add("@stock", SqlDbType.Int).Value = productsModel.StockProducto;
+                command.Parameters.Add("@category", SqlDbType.NVarChar).Value = productsModel.CategoryProducto;
+                command.ExecuteNonQuery();
+            }
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "DELETE FROM Products WHERE Products_Id = @id";
+                command.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                command.ExecuteNonQuery();
+            }
         }
 
         public void Edit(ProductsModel productsModel)
         {
-            throw new NotImplementedException();
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = @"UPDATE Products
+                SET Products_Name =@name,
+                Products_Price = @price
+                WHERE Products_Id = @id";
+                command.Parameters.Add("@name", SqlDbType.NVarChar).Value = productsModel.NameProducto;
+                command.Parameters.Add("@price", SqlDbType.Int).Value = productsModel.PriceProducto;
+                command.Parameters.Add("@id", SqlDbType.Int).Value = productsModel.IdProducto;
+                command.ExecuteNonQuery();
+            }
         }
 
         public IEnumerable<ProductsModel> GetAll()
@@ -48,6 +80,7 @@ namespace Supermarket_mvp._Repositories
                         productsModel.NameProducto = reader["Products_Name"].ToString();
                         productsModel.PriceProducto = (int)reader["Products_Price"];
                         productsModel.StockProducto = (int)reader["Products_Stock"];
+                        productsModel.CategoryProducto = reader["Products_Categories"].ToString();
                         productsList.Add(productsModel);
                     }
                 }

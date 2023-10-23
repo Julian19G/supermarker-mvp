@@ -12,14 +12,19 @@ namespace Supermarket_mvp.Presenters
     {
         private IProductsView view;
         private IProductsRepository repository;
+        private ICategoriesRepository categoriesRepository;
         private BindingSource productsBindingSource;
+        private BindingSource categoriesBindingSource;
         private IEnumerable<ProductsModel> productsList;
+        private IEnumerable<CategoriesModel> categoriesList;
 
-        public ProductsPresenter(IProductsView view, IProductsRepository repository)
+        public ProductsPresenter(IProductsView view, IProductsRepository repository, ICategoriesRepository categoriesRepository)
         {
             this.productsBindingSource = new BindingSource();
+            this.categoriesBindingSource = new BindingSource();
             this.view = view;
             this.repository = repository;
+            this.categoriesRepository = categoriesRepository;
 
             this.view.SearchEvent += SearchProducts;
             this.view.AddNewEvent += AddNewProducts;
@@ -29,41 +34,109 @@ namespace Supermarket_mvp.Presenters
             this.view.CancelEvent += CancelAction;
 
             this.view.SetProductsListBildSource(productsBindingSource);
+            this.view.SetCategoriesListBildSource(categoriesBindingSource);
 
-            loadAllOpenPayModeList();
+            loadAllOpenProductsList();
+            loadAllOpenCategoriesList();
 
             this.view.Show();
         }
 
-        private void loadAllOpenPayModeList()
+        private void loadAllOpenProductsList()
         {
             productsList = repository.GetAll();
             productsBindingSource.DataSource = productsList;
         }
 
+        private void loadAllOpenCategoriesList()
+        {
+            categoriesList = categoriesRepository.GetAll();
+            categoriesBindingSource.DataSource = categoriesList;
+        }
         private void CancelAction(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            CleanViewFields();
         }
 
         private void SaveProducts(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            var products = new ProductsModel();
+            products.IdProducto = Convert.ToInt32(view.ProductsId);
+            products.NameProducto = view.ProductsName;
+            products.PriceProducto = Convert.ToInt32(view.ProductsPrice);
+            products.StockProducto = Convert.ToInt32(view.ProductsStock);
+            products.CategoryProducto = view.ProductsCategory;
+
+
+            try
+            {
+                new Common.ModelDataValidation().Validate(products);
+                if (view.IsEdit)
+                {
+                    repository.Edit(products);
+                    view.Message = "Product Edited Succesfuly";
+                }
+                else
+                {
+                    repository.Add(products);
+                    view.Message = "Product Added successfuly";
+                }
+                view.IsSuccesfull = true;
+                loadAllOpenProductsList();
+                CleanViewFields();
+            }
+            catch (Exception ex)
+            {
+                view.IsSuccesfull = false;
+                view.Message = ex.Message;
+
+            }
+
+        }
+
+        private void CleanViewFields()
+        {
+            view.ProductsId = "0";
+            view.ProductsName = "";
+            view.ProductsPrice = "";
+            view.ProductsStock = "";
+            view.ProductsCategory = "";
         }
 
         private void DeleteSelectedProducts(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var products = (ProductsModel)productsBindingSource.Current;
+
+                repository.Delete(products.IdProducto);
+                view.IsSuccesfull = true;
+                view.Message = "Pay Mode deleted successfully";
+                loadAllOpenProductsList();
+            }
+            catch (Exception ex)
+            {
+                view.IsSuccesfull = false;
+                view.Message = "An Error ocurred, could not delete pay mode";
+            }
         }
 
         private void LoadSelectProductsToEdit(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            var productos = (ProductsModel)productsBindingSource.Current;
+
+            view.ProductsId = productos.IdProducto.ToString();
+            view.ProductsName = productos.NameProducto;
+            view.ProductsStock = productos.StockProducto.ToString();
+            view.ProductsPrice = productos.PriceProducto.ToString();
+ 
+
+            view.IsEdit = true;
         }
 
         private void AddNewProducts(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            view.IsEdit = false;
         }
 
         private void SearchProducts(object? sender, EventArgs e)

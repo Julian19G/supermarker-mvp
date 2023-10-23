@@ -30,12 +30,12 @@ namespace Supermarket_mvp.Presenters
 
             this.view.SetProvidersListBildSource(providersBindingSource);
 
-            loadAllOpenPayModeList();
+            loadAllOpenProvidersList();
 
             this.view.Show();
         }
 
-        private void loadAllOpenPayModeList()
+        private void loadAllOpenProvidersList()
         {
             providersList = repository.GetAll();
             providersBindingSource.DataSource = providersList;
@@ -43,27 +43,81 @@ namespace Supermarket_mvp.Presenters
 
         private void CancelAction(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            CleanViewFields();
         }
 
         private void SaveProviders(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            var providers = new ProvidersModel();
+            providers.IdProvider = Convert.ToInt32(view.ProvidersId);
+            providers.NameProvider = view.ProvidersName;
+            providers.ObservationProvider = view.ProvidersObservation;
+
+            try
+            {
+                new Common.ModelDataValidation().Validate(providers);
+                if (view.IsEdit)
+                {
+                    repository.Edit(providers);
+                    view.Message = "Provider Edited Succesfuly";
+                }
+                else
+                {
+                    repository.Add(providers);
+                    view.Message = "Provider Added successfuly";
+                }
+                view.IsSuccesfull = true;
+                loadAllOpenProvidersList();
+                CleanViewFields();
+            }
+            catch (Exception ex)
+            {
+                view.IsSuccesfull = false;
+                view.Message = ex.Message;
+            }
+
+        }
+
+        private void CleanViewFields()
+        {
+            view.ProvidersId = "0";
+            view.ProvidersName = "";
+            view.ProvidersObservation = "";
         }
 
         private void DeleteSelectedProviders(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var providers = (ProvidersModel)providersBindingSource.Current;
+
+                repository.Delete(providers.IdProvider);
+                view.IsSuccesfull = true;
+                view.Message = "Pay Mode deleted successfully";
+                loadAllOpenProvidersList();
+            }
+            catch (Exception ex)
+            {
+                view.IsSuccesfull = false;
+                view.Message = "An Error ocurred, could not delete pay mode";
+            }
         }
 
         private void LoadSelectProvidersToEdit(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            var providers = (ProvidersModel)providersBindingSource.Current;
+
+            view.ProvidersId = providers.IdProvider.ToString();
+            view.ProvidersName = providers.NameProvider;
+            view.ProvidersObservation = providers.ObservationProvider;
+
+
+            view.IsEdit = true;
         }
 
         private void AddNewProviders(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+        view.IsEdit = false;
         }
 
         private void SearchProviders(object? sender, EventArgs e)

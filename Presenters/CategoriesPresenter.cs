@@ -32,12 +32,12 @@ namespace Supermarket_mvp.Presenters
 
             this.view.SetCategoriesListBildSource(categoriesBindingSource);
 
-            loadAllOpenPayModeList();
+            loadAllOpenCategoriesList();
 
             this.view.Show();
         }
 
-        private void loadAllOpenPayModeList()
+        private void loadAllOpenCategoriesList()
         {
             categoriesList = repository.GetAll();
             categoriesBindingSource.DataSource = categoriesList;
@@ -45,27 +45,81 @@ namespace Supermarket_mvp.Presenters
 
         private void CancelAction(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            CleanViewFields();
         }
 
         private void SaveCategories(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            var categories = new CategoriesModel();
+            categories.IdCategoria = Convert.ToInt32(view.CategoriesId);
+            categories.NameCategoria = view.CategoriesName;
+            categories.ObservationCategoria = view.CategoriesObservation;
+
+            try
+            {
+                new Common.ModelDataValidation().Validate(categories);
+                if (view.IsEdit)
+                {
+                    repository.Edit(categories);
+                    view.Message = "Category Edited Succesfuly";
+                }
+                else
+                {
+                    repository.Add(categories);
+                    view.Message = "Category Added successfuly";
+                }
+                view.IsSuccesfull = true;
+                loadAllOpenCategoriesList();
+                CleanViewFields();
+            }
+            catch (Exception ex)
+            {
+                view.IsSuccesfull = false;
+                view.Message = ex.Message;
+            }
+
+        }
+
+        private void CleanViewFields()
+        {
+            view.CategoriesId = "0";
+            view.CategoriesName = "";
+            view.CategoriesObservation = "";
         }
 
         private void DeleteSelectedCategories(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var categories = (CategoriesModel)categoriesBindingSource.Current;
+
+                repository.Delete(categories.IdCategoria);
+                view.IsSuccesfull = true;
+                view.Message = "Pay Mode deleted successfully";
+                loadAllOpenCategoriesList();
+            }
+            catch (Exception ex)
+            {
+                view.IsSuccesfull = false;
+                view.Message = "An Error ocurred, could not delete pay mode";
+            }
         }
 
         private void LoadSelectCategoriesToEdit(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            var categories = (CategoriesModel)categoriesBindingSource.Current;
+
+            view.CategoriesId = categories.IdCategoria.ToString();
+            view.CategoriesName = categories.NameCategoria;
+            view.CategoriesObservation = categories.ObservationCategoria;
+
+
+            view.IsEdit = true;
         }
 
         private void AddNewCategories(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            view.IsEdit = false;
         }
 
         private void SearchCategories(object? sender, EventArgs e)
